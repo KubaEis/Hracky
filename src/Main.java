@@ -1,6 +1,6 @@
 void main() throws InterruptedException {
     SkladSurovin s = new SkladSurovin();
-    SkladSoucastek sklad = new SkladSoucastek();
+    SkladSoucastek sklad = new SkladSoucastek(10);
     VyrobceHlav vyrobceH = new VyrobceHlav("franta",s,sklad);
     VyrobceRukou vyrobceR = new VyrobceRukou("martin",s,sklad);
     VyrobceTel vyrobceT = new VyrobceTel("stepan je picus",s,sklad);

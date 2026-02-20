@@ -10,20 +10,22 @@ public class VyrobceHlav implements Runnable {
         this.sSoucastek = sSoucastek;
     }
     private synchronized void vyrobSoucastku(){
-        sSoucastek.getHlavy().add(1);
+        sSoucastek.setHlavy(sSoucastek.getHlavy()+1);
     }
     public void run() {
         while (true) {
             if (sSurovin.checkPlasty(nakladyP) && sSurovin.checkVlasu(nakladyV)) {
                 vyrobSoucastku();
-                IO.println("Hlava vyrobena pocet hlav:"+sSoucastek.getHlavy().size()+" pocet plastu:"+sSurovin.getPlast()+" pocet vlasu:"+sSurovin.getVlasy());
+                Log.log("Hlava vyrobena pocet hlav:"+sSoucastek.getHlavy()+" pocet plastu:"+sSurovin.getPlast()+" pocet vlasu:"+sSurovin.getVlasy());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }else{
-                IO.println("Neni dostatek soucastek :(");
+                Log.log("Neni dostatek surovin :(");
+                Log.log("pocet hlav: "+sSoucastek.getHlavy());
+                break;
             }
         }
 

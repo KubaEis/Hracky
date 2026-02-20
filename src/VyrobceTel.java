@@ -9,20 +9,22 @@ public class VyrobceTel implements Runnable {
         this.sSoucastek = sSoucastek;
     }
     private synchronized void vyrobSoucastku(){
-        sSoucastek.getTela().add(1);
+        sSoucastek.setTela(sSoucastek.getTela()+1);
     }
     public void run(){
         while (true) {
             if (sSurovin.checkPlasty(naklady)) {
                 vyrobSoucastku();
-                IO.println("Hlava vyrobena pocet tel:"+sSoucastek.getTela().size()+" pocet plastu:"+sSurovin.getPlast());
+                Log.log("Telo vyrobeno pocet tel:"+sSoucastek.getTela()+" pocet plastu:"+sSurovin.getPlast());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }else{
-                IO.println("Neni dostatek soucastek :(");
+                Log.log("Neni dostatek surovin :(");
+                Log.log("pocet tel: "+sSoucastek.getTela());
+                break;
             }
         }
     }
