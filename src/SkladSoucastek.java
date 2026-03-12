@@ -8,42 +8,47 @@ public class SkladSoucastek {
     private int nohy;
     private int hlavy;
     private int pozadavekVyroby;
+
     SkladSoucastek(int pozadavekVyroby) {
         this.pozadavekVyroby = pozadavekVyroby;
     }
 
-    public boolean checkTela(int pocet){
-        if (tela >= pocet){
+    public synchronized boolean checkTela(int pocet) {
+        if (tela >= pocet) {
             tela--;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public boolean checkHlavy(int pocet){
-        if (hlavy >= pocet){
+
+    public synchronized boolean checkHlavy(int pocet) {
+        if (hlavy >= pocet) {
             hlavy--;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public boolean checkNohy(int pocet){
-        if (nohy >= pocet){
+
+    public synchronized boolean checkNohy(int pocet) {
+        if (nohy >= pocet) {
             nohy--;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public boolean checkRuce(int pocet){
-        if (ruce >= pocet){
+
+    public synchronized boolean checkRuce(int pocet) {
+        if (ruce >= pocet) {
             ruce--;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
     public int getPozadavekVyroby() {
         return pozadavekVyroby;
     }
@@ -80,11 +85,11 @@ public class SkladSoucastek {
         this.hlavy = hlavy;
     }
 
-    public int getHracky() {
+    public synchronized int getHracky() {
         return hracky;
     }
 
-    public void setHracky(int hracky) {
+    public synchronized void setHracky(int hracky) {
         this.hracky = hracky;
     }
 }
