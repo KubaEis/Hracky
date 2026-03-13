@@ -1,6 +1,7 @@
 public class VyrobceNohou implements Runnable {
     private String name;
     private int naklady = 30;
+    private int limitPredPauzou = 0;
     private SkladSurovin sSurovin;
     private SkladSoucastek sSoucastek;
 
@@ -11,6 +12,7 @@ public class VyrobceNohou implements Runnable {
     }
 
     private synchronized void vyrobSoucastku() {
+        limitPredPauzou++;
         sSurovin.setPlast(sSurovin.getPlast() - naklady);
         sSoucastek.setNohy(sSoucastek.getNohy() + 1);
     }
@@ -22,19 +24,37 @@ public class VyrobceNohou implements Runnable {
                 Log.log("Produkcni cil dosaznut. Vyrobce nohou " + name + " konci.");
                 break;
             }
-
-            if (sSurovin.getPlast() > naklady) {
-                vyrobSoucastku();
-                Log.log("Nohy vyrobeny pocet nohou:" + sSoucastek.getNohy() + " pocet plastu:" + sSurovin.getPlast());
+            if (limitPredPauzou == 5){
+                Log.log("Vyrobce hlav "+name+" si dava pauzu.");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                Log.log("Neni dostatek surovin :(");
-                Log.log("pocet nohou: " + sSoucastek.getNohy());
-                break;
+                limitPredPauzou = 0;
+            }else {
+                if (sSoucastek.getNohy() < 6) {
+                    if (sSurovin.getPlast() > naklady) {
+                        vyrobSoucastku();
+                        Log.log("Nohy vyrobeny pocet nohou:" + sSoucastek.getNohy() + " pocet plastu:" + sSurovin.getPlast());
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        Log.log("Neni dostatek surovin :(");
+                        Log.log("pocet nohou: " + sSoucastek.getNohy());
+                        break;
+                    }
+                } else {
+                    Log.log("Sklad nohou je plny cekam. Pocet nohou:" + sSoucastek.getNohy());
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
     }

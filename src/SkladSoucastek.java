@@ -8,9 +8,19 @@ public class SkladSoucastek {
     private int nohy;
     private int hlavy;
     private int pozadavekVyroby;
+    private int panenkyNaOpravu;
 
     SkladSoucastek(int pozadavekVyroby) {
         this.pozadavekVyroby = pozadavekVyroby;
+    }
+
+    public synchronized boolean checkPanenkyNaOpravu(int pocet) {
+        if (panenkyNaOpravu >= pocet) {
+            panenkyNaOpravu--;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public synchronized boolean checkTela(int pocet) {
@@ -91,5 +101,17 @@ public class SkladSoucastek {
 
     public synchronized void setHracky(int hracky) {
         this.hracky = hracky;
+    }
+
+    public void setPozadavekVyroby(int pozadavekVyroby) {
+        this.pozadavekVyroby = pozadavekVyroby;
+    }
+
+    public synchronized int getPanenkyNaOpravu() {
+        return panenkyNaOpravu;
+    }
+
+    public synchronized void setPanenkyNaOpravu(int panenkyNaOpravu) {
+        this.panenkyNaOpravu = panenkyNaOpravu;
     }
 }
