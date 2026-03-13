@@ -72,7 +72,6 @@ public class Sestavovatel implements Runnable {
                         throw new RuntimeException(e);
                     }
                     vyrobHrackuku();
-                    Log.log("Hracka byla vyrobena :)");
                 } else {
                     Log.log("Neni dostatek soucastek :(");
                     try {

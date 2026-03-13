@@ -18,7 +18,6 @@ public class VyrobceRukou implements Runnable {
 
     public void run() {
         while (true) {
-            // Check if production target reached
             if (sSoucastek.getHracky() >= sSoucastek.getPozadavekVyroby()) {
                 Log.log("Produkcni cil dosahnut. Vyrobce rukou " + name + " konci.");
                 break;
