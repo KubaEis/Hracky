@@ -19,8 +19,13 @@ public class OpravarHracek implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Log.log("Oprava hracky probehla. ");
+            Log.log("Oprava hracky probehla. *** pocet hracek " + skladSoucastek.getHracky());
         }else{
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             Log.log("Nejsou zadne hracky na opravu.");
         }
     }
@@ -31,8 +36,9 @@ public class OpravarHracek implements Runnable {
             if (skladSoucastek.getHracky() >= skladSoucastek.getPozadavekVyroby()) {
                 Log.log("Pozadavek vyroby hracek splnen.");
                 break;
+            }else{
+                opravHrackuku();
             }
-
         }
     }
 }

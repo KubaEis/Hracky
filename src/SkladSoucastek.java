@@ -17,6 +17,7 @@ public class SkladSoucastek {
     public synchronized boolean checkPanenkyNaOpravu(int pocet) {
         if (panenkyNaOpravu >= pocet) {
             panenkyNaOpravu--;
+            hracky++;
             return true;
         } else {
             return false;
