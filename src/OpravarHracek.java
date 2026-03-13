@@ -21,12 +21,12 @@ public class OpravarHracek implements Runnable {
             }
             Log.log("Oprava hracky probehla. *** pocet hracek " + skladSoucastek.getHracky());
         }else{
+            Log.log("Nejsou zadne hracky na opravu.");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Log.log("Nejsou zadne hracky na opravu.");
         }
     }
 
