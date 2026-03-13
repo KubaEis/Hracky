@@ -21,7 +21,7 @@ public class VyrobceHlav implements Runnable {
         while (true) {
             // Check if production target reached
             if (sSoucastek.getHracky() >= sSoucastek.getPozadavekVyroby()) {
-                Log.log("Produkcni cil dosaznut. Vyrobce hlav " + name + " konci.");
+                Log.log("Produkcni cil dosahnut. Vyrobce hlav " + name + " konci.");
                 break;
             }
             if (limitPredPauzou == 5){

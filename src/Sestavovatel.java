@@ -74,7 +74,7 @@ public class Sestavovatel implements Runnable {
                     vyrobHrackuku();
                     Log.log("Hracka byla vyrobena :)");
                 } else {
-                    // Wait longer before rechecking if parts aren't available
+                    Log.log("Neni dostatek soucastek :(");
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {

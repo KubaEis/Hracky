@@ -21,7 +21,7 @@ public class VyrobceNohou implements Runnable {
         while (true) {
             // Check if production target reached
             if (sSoucastek.getHracky() >= sSoucastek.getPozadavekVyroby()) {
-                Log.log("Produkcni cil dosaznut. Vyrobce nohou " + name + " konci.");
+                Log.log("Produkcni cil dosahnut. Vyrobce nohou " + name + " konci.");
                 break;
             }
             if (limitPredPauzou == 5){
